@@ -1,0 +1,57 @@
+#include <stdio.h>
+void main()
+{
+    int first[20][20],second[20][20],r1,c1,r2,c2,i,k,j,pro[20][20];
+    printf("Enter the number of rows and columns of matrix 1:\n");
+    scanf("%d %d",&r1,&c1);
+    printf("Enter the number of rows and columns of matric 2:\n");
+    scanf("%d %d",&r2,&c2);
+    while(c1!=r2)
+    {
+        printf("Column of first matrix not equal to row of second matrix");
+    }
+    printf("Enter the elements of matrix 1:\n");
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c1;j++)
+        {
+            printf("Enter the element a%d%d: ",i+1,j+1);
+            scanf("%d",&first[i][j]);
+        }
+    }
+    printf("Enter the elements of matrix 2:\n");
+    for(i=0;i<r2;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            printf("Enter the element a%d%d: ",i+1,j+1);
+            scanf("%d",&second[i][j]);
+        }
+    }
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            pro[i][j]=0;
+        }
+    }
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            for(k=0;k<c1;k++)
+            {
+                pro[i][j]=pro[i][j]+first[i][k]*second[k][j];
+            }
+        }
+    }
+    printf("Matrix after multiplication:\n");
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            printf("%d ",pro[i][j]);
+        }
+        printf("\n");
+    }
+}
