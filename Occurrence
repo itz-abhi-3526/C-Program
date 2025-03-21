@@ -1,0 +1,22 @@
+#include <stdio.h>
+void main()
+{
+    int n, a[20],i,j,ct,key;
+    printf("Enter the number of elements:\n");
+    scanf("%d",&n);
+    printf("Enter the elements:\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("Enter element whose occurence is to be calculated:\n");
+    scanf("%d",&key);
+    for(j=0;j<n;j++)
+    {
+        if(a[j]==key)
+        {
+            ct+=1;
+        }
+    }
+    printf("The number of times %d occurs in array is %d",key,ct);
+}
