@@ -1,52 +1,41 @@
 #include <stdio.h>
-#include <string.h>
-struct Student
-{
-    char name[50];
-    int marks;
-    int rank;
+
+struct Student {
+int roll_no;
+char name[50];
+float total;
+int rank;
 };
-void assignRanks(struct Student students[], int n)
-{
-    struct Student temp;
-    for (int i=0;i<n-1;i++)
-    {
-        for (int j=i+1;j<n;j++) {
-            if (students[i].marks < students[j].marks) {
-                temp = students[i];
-                students[i] = students[j];
-                students[j] = temp;
-            }
+int main() {
+int n;
+printf("Enter the number of students: ");
+scanf("%d", &n);
+struct Student s[n], temp;
+for (int i = 0; i < n; i++) {
+    printf("\nEnter details for student %d:\n", i + 1);
+    printf("Roll No: ");
+    scanf("%d", &s[i].roll_no);
+    printf("Name: ");
+    scanf(" %[^\n]s", s[i].name);
+    printf("Total Marks: ");
+    scanf("%f", &s[i].total);
+}
+for (int i = 0; i < n - 1; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+        if (s[j].total < s[j + 1].total) {
+            temp = s[j];
+            s[j] = s[j + 1];
+            s[j + 1] = temp;
         }
     }
-    for (int i = 0; i < n; i++)
-    {
-        students[i].rank = i+1;
-    }
 }
-void displayStudents(struct Student students[], int n) {
-    printf("\nRank\tName\tMarks\n");
-    for (int i = 0; i < n; i++) {
-        printf("%d\t%s\t%d\n", students[i].rank, students[i].name, students[i].marks);
-    }
+for (int i = 0; i < n; i++) {
+    s[i].rank = i + 1;
 }
-int main()
-{
-    int n;
-    printf("Enter the number of students: ");
-    scanf("%d", &n);
-    struct Student students[n];
-    for (int i=0; i<n;i++)
-    {
-        printf("\nEnter details for student %d\n", i + 1);
-        printf("Name: ");
-        getchar();
-        fgets(students[i].name, sizeof(students[i].name), stdin);
-        students[i].name[strcspn(students[i].name, "\n")] = 0;
-        printf("Marks: ");
-        scanf("%d", &students[i].marks);
-    }
-    assignRanks(students, n);
-    displayStudents(students, n);
-    return 0;
+printf("\nStudent Ranks:\n");
+printf("Rank\tRoll No\tName\t\tTotal Marks\n");
+for (int i = 0; i < n; i++) {
+    printf("%d\t%d\t%s\t%.2f\n", s[i].rank, s[i].roll_no, s[i].name, s[i].total);
+}
+return 0;
 }
